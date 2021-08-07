@@ -1,5 +1,3 @@
-__version__ = "0.1.0"
-
 import csv
 import logging
 from typing import Callable, List, Optional
@@ -47,7 +45,7 @@ def _get_types_functions(types_str: list[str]):
     for type_str in types_str:
         try:
 
-            type_ = TYPES_MAP.get(type_str)
+            type_ = TYPES_MAP[type_str]
         except KeyError:
             type_ = str
             logger.warning(
