@@ -37,6 +37,20 @@ jobs:
           virtualenvs-create: true
           virtualenvs-in-project: true
 
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v2
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root
+
+      - name: Check pyproject.toml validity
+        run: poetry check --no-interaction
+
       - name: Run pre-commit on all files
         run: |
           poetry run pre-commit run --all-files
@@ -56,23 +70,6 @@ jobs:
           echo $TAG
           echo $PROJECT_VERSION
           if [[ "$TAG" != "v$PROJECT_VERSION" ]]; then exit 1; fi
-
-      - name: Get Poetry version
-        run: poetry --version
-
-      - name: Check pyproject.toml validity
-        run: poetry check --no-interaction
-
-      - name: Load cached venv
-        id: cached-poetry-dependencies
-        uses: actions/cache@v2
-        with:
-          path: .venv
-          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
-
-      - name: Install dependencies
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install --no-interaction --no-root
 
       - name: Build
         run: poetry build
