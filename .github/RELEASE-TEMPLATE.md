@@ -1,4 +1,1 @@
-# Announcements
-* First announcement
-
 # Changes
