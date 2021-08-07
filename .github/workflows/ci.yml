@@ -54,3 +54,5 @@ jobs:
       - name: Run tests
         run: |
           poetry run pytest
+
+      - uses: codecov/codecov-action@v2
