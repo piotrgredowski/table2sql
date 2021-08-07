@@ -1,0 +1,35 @@
+repos:
+  - repo: local
+    hooks:
+      - id: isort
+        name: isort
+        entry: isort
+        require_serial: true
+        language: python
+        language_version: python3
+        types_or: [cython, pyi, python]
+        args: ["--filter-files"]
+        minimum_pre_commit_version: "2.9.0"
+      - id: black
+        name: black
+        language: system
+        entry: black
+        require_serial: true
+        types: [python]
+      - id: flake8
+        name: flake8
+        language: system
+        entry: flake8
+        require_serial: true
+        types: [python]
+      - id: pyright
+        name: pyright
+        entry: pyright
+        language: node
+        pass_filenames: false
+        types: [python]
+        additional_dependencies: ["pyright@{{cookiecutter.pyright_version}}"]
+      - id: check_package_version
+        name: check_package_version
+        language: system
+        entry: python _scripts/check_package_version.py {{cookiecutter.package_name}}

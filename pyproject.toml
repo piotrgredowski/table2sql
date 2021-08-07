@@ -1,0 +1,59 @@
+[tool.poetry]
+name = "csv-to-sql-insert"
+version = "0.1.0"
+description = ""
+authors = ["Piotr Gredowski <piotrgredowski@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+bandit = "^1.7.0"
+black = "^21.7b0"
+flake8 = "^3.9.2"
+flake8-debugger = "^4.0.0"
+ipdb = "^0.13.9"
+isort = "^5.9.3"
+pre-commit = "^2.14.0"
+pytest-cov = "^2.12.1"
+pytest-mock = "^3.6.1"
+rope = "^0.19.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+exclude = '''
+
+(
+  /(
+      \.eggs
+    | \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \venv
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+)
+'''
+include = '\.pyi?$'
+line-length = 100
+target-version = ['py38']
+
+[tool.isort]
+include_trailing_comma = true
+line_length = 100
+multi_line_output = 3
+
+[tool.pyright]
+exclude = ['**/.eggs', '**/venv', '**/.venv']
+
+[tool.pytest.ini_options]
+addopts = "--doctest-modules --cov=csv_to_sql_insert --cov-branch --cov-report=xml --cov-report=html --junitxml=junit.xml"
