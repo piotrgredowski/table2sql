@@ -40,14 +40,10 @@ def cli(
             filename, output_table=output_table, delimiter=delimiter, types_row=has_types_row
         )
     else:
-        raise NotImplementedError(f"'{file_extension}' is not supported")
+        raise NotImplementedError(f"'.{file_extension}' file extension is not supported")
 
     print(insert_statement)
     if output_file:
         with open(output_file, "w") as f:
             print(f"\nOutput written to {output_file}")
             f.write(insert_statement)
-
-
-if __name__ == "__main__":
-    cli()
