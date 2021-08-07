@@ -8,10 +8,10 @@ description = ""
 homepage = "https://github.com/piotrgredowski/table2sql"
 classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
-    "Topic :: Programming Language :: Python :: 3.6",
-    "Topic :: Programming Language :: Python :: 3.7",
-    "Topic :: Programming Language :: Python :: 3.8",
-    "Topic :: Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
 ]
 
 [tool.poetry.urls]
