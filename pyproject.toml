@@ -12,7 +12,6 @@ classifiers = [
     "Topic :: Programming Language :: Python :: 3.7",
     "Topic :: Programming Language :: Python :: 3.8",
     "Topic :: Programming Language :: Python :: 3.9",
-    "Topic :: Programming Language :: Python :: 3.10",
 ]
 
 [tool.poetry.urls]
