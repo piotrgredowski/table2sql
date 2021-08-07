@@ -1,17 +1,25 @@
 [tool.poetry]
 name = "table2sql"
-version = "0.1.4"
+version = "0.1.5"
 authors = ["Piotr Gredowski <piotrgredowski@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 description = ""
 homepage = "https://github.com/piotrgredowski/table2sql"
+classifiers = [
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Programming Language :: Python :: 3.6",
+    "Topic :: Programming Language :: Python :: 3.7",
+    "Topic :: Programming Language :: Python :: 3.8",
+    "Topic :: Programming Language :: Python :: 3.9",
+    "Topic :: Programming Language :: Python :: 3.10",
+]
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/piotrgredowski/table2sql/issues"
 
 [tool.poetry.dependencies]
-python = ">=3.6,<4"
+python = "^3.9"
 click = "^8.0.1"
 
 [tool.poetry.dev-dependencies]
