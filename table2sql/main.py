@@ -59,6 +59,24 @@ def _get_types_functions(types_str: list[str]):
 def convert_csv_to_insert_statement(
     filename: str, output_table: str, delimiter=",", types_row=False
 ):
+    """Converts CSV file to SQL insert statements.
+
+    If file doesn't contain row with types as second row - every value is treated as string and
+    will be available in insert statement with single quotes.
+
+    If file contain row with types and `types_row` argument is set to `True` - types will be used
+    to convert columns to given types.
+
+    Args:
+        filename (str): Name of CSV file containing data to be converted to SQL insert statements.
+        output_table (str): Name of table into which data should be inserted.
+        delimiter (str, optional): Delimiter of given CSV file. Defaults to ",".
+        types_row (bool, optional): If second row of CSV file contains row with types
+          (from `TYPES_MAP`). Defaults to False.
+
+    Returns:
+        str: SQL insert statement
+    """
     input_file_ = open(filename)
     input_file = csv.reader(input_file_, delimiter=delimiter)
 
