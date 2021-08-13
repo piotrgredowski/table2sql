@@ -1,0 +1,4 @@
+a;b;c;d
+int;str;float;sql
+1;2;3;(SELECT 1)
+5;6;7;(SELECT 1)
