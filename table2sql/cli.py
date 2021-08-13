@@ -10,7 +10,7 @@ logger = logging.getLogger()
 
 @click.command()
 @click.argument(
-    "filename",
+    "path-to-file",
     type=str,
 )
 @click.option(
@@ -27,7 +27,7 @@ logger = logging.getLogger()
 )
 @click.option("--output-file", default=None, help="Name of file to write SQL insert to")
 def cli(
-    filename: str,
+    path_to_file: str,
     output_table: str,
     delimiter: Optional[str],
     has_types_row: Optional[bool],
@@ -36,7 +36,10 @@ def cli(
     """Converts given table file to SQL insert statements."""
 
     insert_statement = convert_table_file_to_insert_statement(
-        filename, output_table=output_table, delimiter=delimiter, types_row=has_types_row
+        path_to_file=path_to_file,
+        output_table=output_table,
+        delimiter=delimiter,
+        has_types_row=has_types_row,
     )
 
     print(insert_statement)
