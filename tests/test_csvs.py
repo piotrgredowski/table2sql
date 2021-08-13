@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from table2sql.main import convert_csv_to_insert_statement
+from table2sql.main import convert_table_file_to_insert_statement
 from tests import TEST_TABLE_NAME
 from tests.helpers import save_to_file
 
@@ -110,7 +110,7 @@ def test_convert_csv_to_insert_statement_from_csv(
 
     test_csv_filename = save_to_file(test_data)
 
-    result_insert_statement = convert_csv_to_insert_statement(
+    result_insert_statement = convert_table_file_to_insert_statement(
         filename=test_csv_filename,
         delimiter=delimiter,
         output_table=table_name,

@@ -1,6 +1,8 @@
-import csv
 import logging
-from typing import Callable, List, Optional
+from typing import Callable, Iterable, List, Optional, Tuple, cast
+
+from table2sql.converters.from_csv import get_list_of_tuples_from_csv
+from table2sql.converters.from_excel import get_list_of_tuples_from_excel
 
 logger = logging.getLogger()
 
@@ -17,11 +19,11 @@ TYPES_MAP = {
 }
 
 
-def _get_columns_formatted(column_names: List[str]):
+def _get_columns_formatted(column_names: Iterable[str]):
     return f"({', '.join(column_names)})"
 
 
-def _get_values_formatted(values: List[str], types: Optional[List[Callable]]):
+def _get_values_formatted(values: Iterable[str], types: Optional[List[Callable]]):
     values_ = []
     for row in values:
         if types:
@@ -40,7 +42,7 @@ def _get_insert_statement_formatted(
     )
 
 
-def _get_types_functions(types_str: list[str]):
+def _get_types_functions(types_str: Tuple[str, ...]):
     types_functions = []
     for type_str in types_str:
         try:
@@ -56,8 +58,12 @@ def _get_types_functions(types_str: list[str]):
     return types_functions
 
 
-def convert_csv_to_insert_statement(
-    filename: str, output_table: str, delimiter=",", types_row=False
+def _get_file_extension(file_path: str):
+    return file_path.split(".")[-1]
+
+
+def convert_table_file_to_insert_statement(
+    filename: str, output_table: str, delimiter=str, types_row=bool
 ):
     """Converts CSV file to SQL insert statements.
 
@@ -70,22 +76,30 @@ def convert_csv_to_insert_statement(
     Args:
         filename (str): Name of CSV file containing data to be converted to SQL insert statements.
         output_table (str): Name of table into which data should be inserted.
-        delimiter (str, optional): Delimiter of given CSV file. Defaults to ",".
-        types_row (bool, optional): If second row of CSV file contains row with types
+        delimiter (str): Delimiter of given CSV file.
+        types_row (bool, optional): If second row of table file contains row with types
           (from `TYPES_MAP`). Defaults to False.
 
     Returns:
         str: SQL insert statement
     """
-    input_file_ = open(filename)
-    input_file = csv.reader(input_file_, delimiter=delimiter)
+
+    file_extension = _get_file_extension(filename)
+
+    if file_extension == "csv":
+        rows = get_list_of_tuples_from_csv(path_to_file=filename, delimiter=delimiter)
+    elif file_extension in ("xls", "xlsx"):
+        rows = get_list_of_tuples_from_excel(path_to_file=filename)
+    else:
+        raise NotImplementedError(f"'.{file_extension}' file extension is not supported")
 
     types = None
     if types_row:
-        [column_names, types_str, *values] = input_file
+        [column_names, types_str, *values] = rows
+        types_str = cast(Tuple[str, ...], types_str)
         types = _get_types_functions(types_str)
     else:
-        [column_names, *values] = input_file
+        [column_names, *values] = rows
 
     column_names_formatted = _get_columns_formatted(column_names)
     values_formatted = _get_values_formatted(values, types=types)
