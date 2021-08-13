@@ -28,7 +28,8 @@ def _get_values_formatted(values: Iterable[str], types: Optional[List[Callable]]
     for row in values:
         if types:
             row = [str(type_(value)) for type_, value in zip(types, row)]
-
+        else:
+            row = [str(value) for value in row]
         values_.append(f'({", ".join(row)})')
 
     return ", ".join(values_)
