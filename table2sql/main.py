@@ -88,7 +88,7 @@ def convert_table_file_to_insert_statement(
 
     if file_extension == "csv":
         rows = get_list_of_tuples_from_csv(path_to_file=path_to_file, delimiter=delimiter)
-    elif file_extension in ("xls", "xlsx"):
+    elif file_extension in ("xlsx", "xlsm", "xltx", "xltm"):
         rows = get_list_of_tuples_from_excel(path_to_file=path_to_file)
     else:
         raise NotImplementedError(f"'.{file_extension}' file extension is not supported")
