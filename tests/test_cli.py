@@ -5,7 +5,7 @@ from click.testing import CliRunner
 
 from table2sql.cli import cli
 from tests import TEST_TABLE_NAME
-from tests.helpers import save_to_file
+from tests.helpers import save_to_csv
 
 test_config = [
     {
@@ -37,7 +37,7 @@ def test_cli(test_data, delimiter, types_row, table_name, expected):
     expected = expected.strip()
     test_data = test_data.strip()
 
-    test_csv_filename = save_to_file(test_data)
+    test_csv_filename = save_to_csv(test_data)
 
     result = runner.invoke(
         cli,
@@ -63,7 +63,7 @@ def test_cli_saving_file(test_data, delimiter, types_row, table_name, expected):
     expected_result = expected.strip()
     test_data = test_data.strip()
 
-    test_csv_filename = save_to_file(test_data)
+    test_csv_filename = save_to_csv(test_data)
 
     with tempfile.NamedTemporaryFile() as f:
         result = runner.invoke(
@@ -79,8 +79,8 @@ def test_cli_saving_file(test_data, delimiter, types_row, table_name, expected):
                 f.name,
             ],
         )
-
         result_from_file = open(f.name).read()
+
     assert result.exit_code == 0
     assert expected_result in result.output.strip()
     assert result_from_file.strip() == expected_result
