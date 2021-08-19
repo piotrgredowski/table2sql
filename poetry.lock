@@ -242,6 +242,7 @@ python-versions = ">=2.7"
 [package.dependencies]
 decorator = {version = "*", markers = "python_version > \"3.6\""}
 ipython = {version = ">=7.17.0", markers = "python_version > \"3.6\""}
+setuptools = "*"
 toml = {version = ">=0.10.2", markers = "python_version > \"3.6\""}
 
 [[package]]
@@ -263,6 +264,7 @@ pexpect = {version = ">4.3", markers = "sys_platform != \"win32\""}
 pickleshare = "*"
 prompt-toolkit = ">=2.0.0,<3.0.0 || >3.0.0,<3.0.1 || >3.0.1,<3.1.0"
 pygments = "*"
+setuptools = ">=18.5"
 traitlets = ">=4.2"
 
 [package.extras]
@@ -594,6 +596,18 @@ python-versions = "*"
 dev = ["pytest"]
 
 [[package]]
+name = "setuptools"
+version = "57.4.0"
+description = "Easily download, build, install, upgrade, and uninstall Python packages"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.extras]
+docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)", "jaraco.tidelift (>=1.4)", "pygments-github-lexers (==0.0.5)", "sphinx-inline-tabs", "sphinxcontrib-towncrier", "furo"]
+testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "mock", "flake8-2020", "virtualenv (>=13.0.0)", "pytest-virtualenv (>=1.2.7)", "wheel", "paver", "pip (>=19.1)", "jaraco.envs", "pytest-xdist", "sphinx", "jaraco.path (>=3.2.0)", "pytest-black (>=0.3.7)", "pytest-mypy"]
+
+[[package]]
 name = "six"
 version = "1.16.0"
 description = "Python 2 and 3 compatibility utilities"
@@ -688,7 +702,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "b652c0afd1dcdf201b71b0d92c789afcbbd82d4967ab5aeade84c4e8d3f9ad50"
+content-hash = "8010e2d4d2e8a1e23f70ec727ce5a08360993c077036b86a12e7324bb3d597fd"
 
 [metadata.files]
 appdirs = [
@@ -1012,6 +1026,10 @@ regex = [
 ]
 rope = [
     {file = "rope-0.19.0.tar.gz", hash = "sha256:64e6d747532e1f5c8009ec5aae3e5523a5bcedf516f39a750d57d8ed749d90da"},
+]
+setuptools = [
+    {file = "setuptools-57.4.0-py3-none-any.whl", hash = "sha256:a49230977aa6cfb9d933614d2f7b79036e9945c4cdd7583163f4e920b83418d6"},
+    {file = "setuptools-57.4.0.tar.gz", hash = "sha256:6bac238ffdf24e8806c61440e755192470352850f3419a52f26ffe0a1a64f465"},
 ]
 six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
