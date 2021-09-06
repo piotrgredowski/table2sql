@@ -24,6 +24,7 @@ openpyxl = "^3.0.7"
 
 [tool.poetry.group.dev.dependencies]
 toml = "^0.10.2"
+importlib-metadata = "^4.8.1"
 
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.0"
