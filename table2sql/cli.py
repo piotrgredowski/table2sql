@@ -25,13 +25,13 @@ logger = logging.getLogger()
 @click.option(
     "--has-types-row",
     is_flag=True,
-    help=f"""
-        If file contains row with types as row 1 (second row in file).
-        Available types: {', '.join(TYPES_MAP.keys())}.
-    """,
+    help=(
+        "If file contains row with types as row 1 (second row in file). "
+        f"Available types: {', '.join(TYPES_MAP.keys())}."
+    ),
 )
 @click.option("--output-file", default=None, help="Name of file to write SQL insert to.")
-def cli(
+def table2sql(
     path_to_file: str,
     output_table: str,
     delimiter: Optional[str],
