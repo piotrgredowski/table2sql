@@ -1,5 +1,9 @@
 site_name: table2sql
 
+repo_url: https://github.com/piotrgredowski/table2sql
+
+edit_uri: edit/main/docs/
+
 theme:
   name: material
 
@@ -13,3 +17,5 @@ markdown_extensions:
       linenums: true
       use_pygments: true
   - pymdownx.superfences
+
+nav:
