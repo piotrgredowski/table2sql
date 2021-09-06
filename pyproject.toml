@@ -18,14 +18,13 @@ version = "1.0.0"
 "Bug Tracker" = "https://github.com/piotrgredowski/table2sql/issues"
 
 [tool.poetry.dependencies]
+python = ">=3.6,<4.0"
 click = "^8.0.1"
 openpyxl = "^3.0.7"
-python = ">=3.6.0,<4.0.0"
 
 [tool.poetry.group.dev.dependencies]
-importlib-metadata = "^4.8.1"
 toml = "^0.10.2"
-importlib-metadata = "^4.8.1"
+importlib-metadata = {version = "^4.8.1", python = "<3.8"}
 
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.0"
