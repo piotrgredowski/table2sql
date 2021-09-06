@@ -7,6 +7,9 @@
 
 Python CLI tool which allows you to convert file with table (CSV and Excel) to SQL insert statements.
 
+[Docs](https://gredowski.com/table2sql/)
+
+## Basic usage
 
 `some.csv`
 
