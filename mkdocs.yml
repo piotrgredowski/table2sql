@@ -1,0 +1,15 @@
+site_name: table2sql
+
+theme:
+  name: material
+
+plugins:
+  - search
+  - mkdocstrings
+
+markdown_extensions:
+  - mkdocs-click
+  - pymdownx.highlight:
+      linenums: true
+      use_pygments: true
+  - pymdownx.superfences
