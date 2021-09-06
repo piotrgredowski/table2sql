@@ -19,7 +19,9 @@ logger = logging.getLogger()
     type=str,
     help="Name of table to use in SQL insert statement.",
 )
-@click.option("--delimiter", default=",", type=str, help="Delimiter of CSV file.", show_default=True)
+@click.option(
+    "--delimiter", default=",", type=str, help="Delimiter of CSV file.", show_default=True
+)
 @click.option(
     "--has-types-row",
     is_flag=True,
