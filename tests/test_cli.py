@@ -3,7 +3,7 @@ import tempfile
 import pytest
 from click.testing import CliRunner
 
-from table2sql.cli import cli
+from table2sql.cli import table2sql
 from tests import TEST_TABLE_NAME
 from tests.helpers import save_to_csv
 
@@ -40,7 +40,7 @@ def test_cli(test_data, delimiter, types_row, table_name, expected):
     test_csv_filename = save_to_csv(test_data)
 
     result = runner.invoke(
-        cli,
+        table2sql,
         [
             test_csv_filename,
             "--output-table",
@@ -67,7 +67,7 @@ def test_cli_saving_file(test_data, delimiter, types_row, table_name, expected):
 
     with tempfile.NamedTemporaryFile() as f:
         result = runner.invoke(
-            cli,
+            table2sql,
             [
                 test_csv_filename,
                 "--output-table",
@@ -93,7 +93,7 @@ def test_cli_not_supported_file_extension():
     wrong_file = "file" + file_extension
 
     result = runner.invoke(
-        cli,
+        table2sql,
         [
             wrong_file,
             "--output-table",

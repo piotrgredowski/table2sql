@@ -70,7 +70,8 @@ def convert_table_file_to_insert_statement(
     has_types_row: Optional[bool] = False,
     sheet_name: Optional[str] = None,
 ):
-    """Converts CSV file to SQL insert statements.
+    # noqa: E501
+    """Converts table file (CSV or Excel) to SQL insert statements.
 
     If file doesn't contain row with types as second row - every value is treated as string and
     will be available in insert statement with single quotes.
@@ -89,6 +90,27 @@ def convert_table_file_to_insert_statement(
 
     Returns:
         str: SQL insert statement
+
+    Example:
+    ```python
+    from table2sql import convert_table_file_to_insert_statement
+
+    ## some.csv
+    # a,b,c,d
+    # int,str,float,sql
+    # 1,2,3,(SELECT id FROM another.table WHERE name = 'Paul')
+    # 5,6,7,(SELECT id FROM another.table WHERE name = 'Paul')
+
+    inserts = convert_table_file_to_insert_statement(
+        path_to_file="some.csv",
+        output_table="test.table",
+        has_types_row=True,
+    )
+
+    print(inserts)
+    # INSERT INTO some.table (a, b, c, d)
+    # VALUES (1, '2', 3.0, (SELECT id FROM another.table WHERE name = 'Paul')), (5, '6', 7.0, (SELECT id FROM another.table WHERE name = 'Paul'));
+    ```
     """
 
     file_extension = _get_file_extension(path_to_file)
