@@ -12,7 +12,7 @@ homepage = "https://github.com/piotrgredowski/table2sql"
 license = "MIT"
 name = "table2sql"
 readme = "README.md"
-version = "1.0.0"
+version = "1.0.1"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/piotrgredowski/table2sql/issues"

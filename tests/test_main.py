@@ -201,3 +201,17 @@ VALUES (1, '2', 3.0, (SELECT 1)), (5, '6', 7.0, (SELECT 1));""".strip()
     os.remove(test_filename)
 
     assert result_insert_statement == expected
+
+
+def test_file_with_empty_columns():
+    result = convert_table_file_to_insert_statement(
+        path_to_file="./tests/excel/test_file_with_empty_columns.xlsx",
+        output_table="test.table",
+        delimiter="not relevant",
+        has_types_row=True,
+    )
+    expected = """
+INSERT INTO test.table (a, b, c, d)
+VALUES (1, NULL, 3.0, (SELECT 1)), (5, '6', NULL, (SELECT 1));""".strip()
+
+    assert result == expected
