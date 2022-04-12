@@ -20,6 +20,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.9"
 click = "^8.0.1"
+openpyxl = "^3.0.7"
 
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.0"
