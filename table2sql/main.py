@@ -16,6 +16,7 @@ TYPES_MAP = {
     "float": float,
     "str": lambda value: f"'{value}'",
     "sql": lambda sql: sql,
+    "null": lambda _: "NULL",
 }
 
 
@@ -26,10 +27,13 @@ def _get_columns_formatted(column_names: Iterable[str]):
 def _get_values_formatted(values: Iterable[str], types: Optional[List[Callable]]):
     values_ = []
     for row in values:
+
         if types:
-            row = [str(type_(value)) for type_, value in zip(types, row)]
+            row = [
+                "NULL" if value is None else str(type_(value)) for type_, value in zip(types, row)
+            ]
         else:
-            row = [str(value) for value in row]
+            row = ["NULL" if value is None else str(value) for value in row]
         values_.append(f'({", ".join(row)})')
 
     return ", ".join(values_)
@@ -46,8 +50,8 @@ def _get_insert_statement_formatted(
 def _get_types_functions(types_str: Tuple[str, ...]):
     types_functions = []
     for type_str in types_str:
+        type_str = type_str.lower()
         try:
-
             type_ = TYPES_MAP[type_str]
         except KeyError:
             type_ = str
