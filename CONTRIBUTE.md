@@ -1,5 +1,11 @@
 # Contribute guide
 
+To install all dependencies (use `poetry-core>=1.2.0a2`):
+
+```bash
+poetry install --with dev,docs
+```
+
 To run checks:
 
 ```bash

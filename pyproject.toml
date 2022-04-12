@@ -18,29 +18,37 @@ version = "1.0.0"
 "Bug Tracker" = "https://github.com/piotrgredowski/table2sql/issues"
 
 [tool.poetry.dependencies]
-python = ">=3.6,<4.0"
 click = "^8.0.1"
 openpyxl = "^3.0.7"
+python = ">=3.6.2,<4.0"
 
 [tool.poetry.group.dev.dependencies]
+rope = "^0.19.0"
 toml = "^0.10.2"
-importlib-metadata = {version = "^4.8.1", python = "<3.8"}
+pytest = "^6.2.4"
+
+[tool.poetry.group.docs.dependencies]
+Pygments = "^2.10.0"
+mkdocs = "^1.2.2"
+mkdocs-click = {version = "^0.4.0", python = ">3.6,<4.0"}
+mkdocs-material = "^7.2.6"
+mkdocstrings = "^0.15.2"
 
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.0"
 black = "^21.7b0"
 flake8 = "^3.9.2"
 flake8-debugger = "^4.0.0"
-ipdb = "0.13.9"
+importlib-metadata = {version = "^4.8.1", python = "<3.8"}
+ipdb = "^0.13.9"
 isort = "^5.9.3"
 pre-commit = "^2.14.0"
 pytest = "^6.2.4"
 pytest-cov = "^2.12.1"
 pytest-mock = "^3.6.1"
-rope = "^0.19.0"
 
 [tool.poetry.scripts]
-table2sql = "table2sql.cli:cli"
+table2sql = "table2sql.cli:table2sql"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
@@ -67,7 +75,7 @@ exclude = '''
 '''
 include = '\.pyi?$'
 line-length = 100
-target-version = ['py39']
+target-version = ['py38']
 
 [tool.isort]
 include_trailing_comma = true
