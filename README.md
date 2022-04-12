@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/piotrgredowski/table2sql/actions/workflows/ci.yml/badge.svg)](https://github.com/piotrgredowski/table2sql/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/piotrgredowski/table2sql/branch/main/graph/badge.svg?token=fNkIDyWLq7)](https://codecov.io/gh/piotrgredowski/table2sql)
+[![CodeQL](https://github.com/piotrgredowski/table2sql/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/piotrgredowski/table2sql/actions/workflows/codeql-analysis.yml)
 
 Python CLI tool which allows you to convert file with table (for now only CSV) to SQL insert statements.
 
