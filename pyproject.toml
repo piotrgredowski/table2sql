@@ -1,28 +1,29 @@
 [tool.poetry]
-name = "table2sql"
-version = "1.0.0"
 authors = ["Piotr Gredowski <piotrgredowski@gmail.com>"]
-license = "MIT"
-readme = "README.md"
+classifiers = [
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Programming Language :: Python :: 3.6",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+]
 description = ""
 homepage = "https://github.com/piotrgredowski/table2sql"
-classifiers = [
-    "Topic :: Software Development :: Libraries :: Python Modules",
-    "Programming Language :: Python :: 3.6",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-]
+license = "MIT"
+name = "table2sql"
+readme = "README.md"
+version = "1.0.0"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/piotrgredowski/table2sql/issues"
 
 [tool.poetry.dependencies]
-python = ">=3.6.0,<4.0.0"
 click = "^8.0.1"
 openpyxl = "^3.0.7"
+python = ">=3.6.0,<4.0.0"
 
 [tool.poetry.group.dev.dependencies]
+importlib-metadata = "^4.8.1"
 toml = "^0.10.2"
 importlib-metadata = "^4.8.1"
 
@@ -31,7 +32,7 @@ bandit = "^1.7.0"
 black = "^21.7b0"
 flake8 = "^3.9.2"
 flake8-debugger = "^4.0.0"
-ipdb = "^0.13.9"
+ipdb = "0.13.9"
 isort = "^5.9.3"
 pre-commit = "^2.14.0"
 pytest = "^6.2.4"
@@ -43,8 +44,8 @@ rope = "^0.19.0"
 table2sql = "table2sql.cli:cli"
 
 [build-system]
-requires = ["poetry-core>=1.2.0a2"]
 build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.2.0a2"]
 
 [tool.black]
 exclude = '''
