@@ -48,6 +48,9 @@ jobs:
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: poetry install --no-interaction --no-root
 
+      - name: Check pyproject.toml validity
+        run: poetry check --no-interaction
+
       - name: Run pre-commit on all files
         run: |
           poetry run pre-commit run --all-files
