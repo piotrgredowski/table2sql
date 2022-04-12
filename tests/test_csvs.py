@@ -1,17 +1,11 @@
+# flake8: noqa
+
 import os
-import tempfile
 
 import pytest
 
-from csv_to_sql_insert import __version__, convert_csv_to_insert_statement
-
-
-def _save_to_file(csv_str):
-    with tempfile.NamedTemporaryFile(delete=False) as f:
-        f.write(bytes(csv_str, encoding="utf-8"))
-
-    return f.name
-
+from table2sql.main import convert_csv_to_insert_statement
+from tests.helpers import save_to_file
 
 test_config = [
     {
@@ -71,13 +65,24 @@ INSERT INTO test.table (a, b, c, d)
 VALUES (1, '2', 3.0, (SELECT 1)), (5, '6', 7.0, (SELECT 1));
 """,
     },
+    {
+        "input_data": """
+a;b;c;d
+int;str;float;sql
+1;2;3;(SELECT id FROM another.table WHERE name = 'Paul')
+5;6;7;(SELECT id FROM another.table WHERE name = 'Paul')
+""",
+        "delimiter": ";",
+        "types_row": True,
+        "table_name": "test.table",
+        "expected": """
+INSERT INTO test.table (a, b, c, d)
+VALUES (1, '2', 3.0, (SELECT id FROM another.table WHERE name = 'Paul')), (5, '6', 7.0, (SELECT id FROM another.table WHERE name = 'Paul'));
+""",
+    },
 ]
 
 test_config_as_tuples = [c.values() for c in test_config]
-
-
-def test_version():
-    assert __version__ == "0.1.0"
 
 
 @pytest.mark.parametrize(
@@ -89,7 +94,7 @@ def test_convert_csv_to_insert_statement_from_csv(
     expected = expected.strip()
     test_data = test_data.strip()
 
-    test_csv_filename = _save_to_file(test_data)
+    test_csv_filename = save_to_file(test_data)
 
     result_insert_statement = convert_csv_to_insert_statement(
         filename=test_csv_filename,

@@ -5,3 +5,5 @@ max-line-length = 100
 ignore = D203,W503,E203,E712,C901,E231
 exclude = .git,__pycache__,docs/source/conf.py,old,build,dist,venv
 max-complexity = 10
+per-file-ignores =
+    test_*.py:E501

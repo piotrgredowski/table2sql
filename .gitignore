@@ -50,6 +50,7 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+junit.xml
 
 # Translations
 *.mo
@@ -143,3 +144,5 @@ cython_debug/
 !/.vscode/launch.json
 ## VSCode mssql debugger log files
 sqltools_*.log
+
+/*.csv
