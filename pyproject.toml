@@ -1,9 +1,10 @@
 [tool.poetry]
 name = "table2sql"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Piotr Gredowski <piotrgredowski@gmail.com>"]
 license = "MIT"
 readme = "README.md"
+description = ""
 
 [tool.poetry.dependencies]
 python = "^3.9"
