@@ -63,7 +63,7 @@ def _get_file_extension(file_path: str):
 
 
 def convert_table_file_to_insert_statement(
-    filename: str, output_table: str, delimiter=str, types_row=bool
+    path_to_file: str, output_table: str, delimiter=str, has_types_row=bool
 ):
     """Converts CSV file to SQL insert statements.
 
@@ -74,7 +74,7 @@ def convert_table_file_to_insert_statement(
     to convert columns to given types.
 
     Args:
-        filename (str): Name of CSV file containing data to be converted to SQL insert statements.
+        path_to_file (str): Name of file containing data to be converted to SQL insert statements.
         output_table (str): Name of table into which data should be inserted.
         delimiter (str): Delimiter of given CSV file.
         types_row (bool, optional): If second row of table file contains row with types
@@ -84,17 +84,17 @@ def convert_table_file_to_insert_statement(
         str: SQL insert statement
     """
 
-    file_extension = _get_file_extension(filename)
+    file_extension = _get_file_extension(path_to_file)
 
     if file_extension == "csv":
-        rows = get_list_of_tuples_from_csv(path_to_file=filename, delimiter=delimiter)
+        rows = get_list_of_tuples_from_csv(path_to_file=path_to_file, delimiter=delimiter)
     elif file_extension in ("xls", "xlsx"):
-        rows = get_list_of_tuples_from_excel(path_to_file=filename)
+        rows = get_list_of_tuples_from_excel(path_to_file=path_to_file)
     else:
         raise NotImplementedError(f"'.{file_extension}' file extension is not supported")
 
     types = None
-    if types_row:
+    if has_types_row:
         [column_names, types_str, *values] = rows
         types_str = cast(Tuple[str, ...], types_str)
         types = _get_types_functions(types_str)
