@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "table2sql"
-version = "0.1.4"
+version = "1.0.0"
 authors = ["Piotr Gredowski <piotrgredowski@gmail.com>"]
 license = "MIT"
 readme = "README.md"
