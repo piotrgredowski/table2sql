@@ -1,5 +1,3 @@
-# flake8: noqa
-
 import os
 
 import pytest
@@ -78,6 +76,21 @@ int;str;float;sql
         "expected": """
 INSERT INTO test.table (a, b, c, d)
 VALUES (1, '2', 3.0, (SELECT id FROM another.table WHERE name = 'Paul')), (5, '6', 7.0, (SELECT id FROM another.table WHERE name = 'Paul'));
+""",
+    },
+    {
+        "input_data": """
+a;b
+not_implemented_type;str
+1;2
+5;6
+""",
+        "delimiter": ";",
+        "types_row": True,
+        "table_name": "test.table",
+        "expected": """
+INSERT INTO test.table (a, b)
+VALUES (1, '2'), (5, '6');
 """,
     },
 ]
