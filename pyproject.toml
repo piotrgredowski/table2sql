@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "table2sql"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Piotr Gredowski <piotrgredowski@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 description = ""
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.6,<4"
 click = "^8.0.1"
 
 [tool.poetry.dev-dependencies]
