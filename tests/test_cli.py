@@ -4,6 +4,7 @@ import pytest
 from click.testing import CliRunner
 
 from table2sql.cli import cli
+from tests import TEST_TABLE_NAME
 from tests.helpers import save_to_file
 
 test_config = [
@@ -16,7 +17,7 @@ int;str;float;sql
 """,
         "delimiter": ";",
         "types_row": True,
-        "table_name": "test.table",
+        "table_name": TEST_TABLE_NAME,
         "expected": """
 INSERT INTO test.table (a, b, c, d)
 VALUES (1, '2', 3.0, (SELECT 1)), (5, '6', 7.0, (SELECT 1));

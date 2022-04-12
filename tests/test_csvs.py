@@ -3,6 +3,7 @@ import os
 import pytest
 
 from table2sql.main import convert_csv_to_insert_statement
+from tests import TEST_TABLE_NAME
 from tests.helpers import save_to_file
 
 test_config = [
@@ -14,7 +15,7 @@ a,b,c,d
 """,
         "delimiter": ",",
         "types_row": False,
-        "table_name": "test.table",
+        "table_name": TEST_TABLE_NAME,
         "expected": """
 INSERT INTO test.table (a, b, c, d)
 VALUES (1, 2, 3, 4), (5, 6, 7, 8);""",
@@ -27,7 +28,7 @@ a;b;c;d
 """,
         "delimiter": ";",
         "types_row": False,
-        "table_name": "test.table",
+        "table_name": TEST_TABLE_NAME,
         "expected": """
 INSERT INTO test.table (a, b, c, d)
 VALUES (1, 2, 3, 4), (5, 6, 7, 8);
@@ -42,7 +43,7 @@ int;str;float;int
 """,
         "delimiter": ";",
         "types_row": True,
-        "table_name": "test.table",
+        "table_name": TEST_TABLE_NAME,
         "expected": """
 INSERT INTO test.table (a, b, c, d)
 VALUES (1, '2', 3.0, 4), (5, '6', 7.0, 8);
@@ -57,7 +58,7 @@ int;str;float;sql
 """,
         "delimiter": ";",
         "types_row": True,
-        "table_name": "test.table",
+        "table_name": TEST_TABLE_NAME,
         "expected": """
 INSERT INTO test.table (a, b, c, d)
 VALUES (1, '2', 3.0, (SELECT 1)), (5, '6', 7.0, (SELECT 1));
@@ -72,7 +73,7 @@ int;str;float;sql
 """,
         "delimiter": ";",
         "types_row": True,
-        "table_name": "test.table",
+        "table_name": TEST_TABLE_NAME,
         "expected": """
 INSERT INTO test.table (a, b, c, d)
 VALUES (1, '2', 3.0, (SELECT id FROM another.table WHERE name = 'Paul')), (5, '6', 7.0, (SELECT id FROM another.table WHERE name = 'Paul'));
@@ -87,7 +88,7 @@ not_implemented_type;str
 """,
         "delimiter": ";",
         "types_row": True,
-        "table_name": "test.table",
+        "table_name": TEST_TABLE_NAME,
         "expected": """
 INSERT INTO test.table (a, b)
 VALUES (1, '2'), (5, '6');
