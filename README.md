@@ -1,9 +1,12 @@
 # table2sql
 
+
 [![CI](https://github.com/piotrgredowski/table2sql/actions/workflows/ci.yml/badge.svg)](https://github.com/piotrgredowski/table2sql/actions/workflows/ci.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=piotrgredowski_table2sql&metric=alert_status)](https://sonarcloud.io/dashboard?id=piotrgredowski_table2sql)
 [![codecov](https://codecov.io/gh/piotrgredowski/table2sql/branch/main/graph/badge.svg?token=fNkIDyWLq7)](https://codecov.io/gh/piotrgredowski/table2sql)
 [![CodeQL](https://github.com/piotrgredowski/table2sql/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/piotrgredowski/table2sql/actions/workflows/codeql-analysis.yml)
+
+[![PyPI version](https://badge.fury.io/py/table2sql.svg)](https://badge.fury.io/py/table2sql)
 
 Python CLI tool which allows you to convert file with table (CSV and Excel) to SQL insert statements.
 
