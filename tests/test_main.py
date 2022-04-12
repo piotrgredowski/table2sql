@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from table2sql.main import convert_table_file_to_insert_statement
+from table2sql import convert_table_file_to_insert_statement
 from tests import TEST_TABLE_NAME
 from tests.helpers import save_to_csv, save_to_excel
 

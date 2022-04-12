@@ -7,3 +7,5 @@ exclude = .git,__pycache__,docs/source/conf.py,old,build,dist,venv
 max-complexity = 10
 per-file-ignores =
     test_*.py:E501
+    # line too long
+    table2sql/main.py: E501,
