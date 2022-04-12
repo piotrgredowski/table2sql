@@ -3,7 +3,7 @@ from typing import Optional
 
 import click
 
-from .main import convert_csv_to_insert_statement
+from .main import convert_table_file_to_insert_statement
 
 logger = logging.getLogger()
 
@@ -34,13 +34,10 @@ def cli(
     output_file: Optional[str],
 ):
     """Converts given table file to SQL insert statements."""
-    file_extension = filename.split(".")[-1]
-    if file_extension == "csv":
-        insert_statement = convert_csv_to_insert_statement(
-            filename, output_table=output_table, delimiter=delimiter, types_row=has_types_row
-        )
-    else:
-        raise NotImplementedError(f"'.{file_extension}' file extension is not supported")
+
+    insert_statement = convert_table_file_to_insert_statement(
+        filename, output_table=output_table, delimiter=delimiter, types_row=has_types_row
+    )
 
     print(insert_statement)
     if output_file:
