@@ -171,3 +171,33 @@ def test_convert_table_file_to_insert_statement_from_excel(
     os.remove(test_filename)
 
     assert result_insert_statement == expected
+
+
+def test_convert_table_file_to_insert_statement_from_excel_with_multiple_sheets():
+    test_data = [
+        ("a", "b", "c", "d"),
+        ("int", "str", "float", "sql"),
+        (1, 2, 3, "(SELECT 1)"),
+        (5, 6, 7, "(SELECT 1)"),
+    ]
+
+    sheet_name = "test sheet"
+
+    expected = """
+INSERT INTO test.table (a, b, c, d)
+VALUES (1, '2', 3.0, (SELECT 1)), (5, '6', 7.0, (SELECT 1));""".strip()
+
+    test_filename = save_to_excel(
+        test_data, sheet_name=sheet_name, additional_sheets=["1", "2", "3"]
+    )
+
+    result_insert_statement = convert_table_file_to_insert_statement(
+        path_to_file=test_filename,
+        output_table=TEST_TABLE_NAME,
+        has_types_row=True,
+        sheet_name=sheet_name,
+    )
+
+    os.remove(test_filename)
+
+    assert result_insert_statement == expected
