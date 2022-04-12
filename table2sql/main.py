@@ -64,7 +64,11 @@ def _get_file_extension(file_path: str):
 
 
 def convert_table_file_to_insert_statement(
-    path_to_file: str, output_table: str, delimiter=str, has_types_row=bool, sheet_name=None
+    path_to_file: str,
+    output_table: str,
+    delimiter: Optional[str] = ",",
+    has_types_row: Optional[bool] = False,
+    sheet_name: Optional[str] = None,
 ):
     """Converts CSV file to SQL insert statements.
 

@@ -3,7 +3,7 @@ from typing import Optional
 
 import click
 
-from .main import convert_table_file_to_insert_statement
+from .main import TYPES_MAP, convert_table_file_to_insert_statement
 
 logger = logging.getLogger()
 
@@ -17,15 +17,18 @@ logger = logging.getLogger()
     "--output-table",
     required=True,
     type=str,
-    help="Name of table to use in SQL insert statement",
+    help="Name of table to use in SQL insert statement.",
 )
-@click.option("--delimiter", default=",", type=str, help="Delimiter of CSV file", show_default=True)
+@click.option("--delimiter", default=",", type=str, help="Delimiter of CSV file.", show_default=True)
 @click.option(
     "--has-types-row",
     is_flag=True,
-    help="If file contains row with types as row 1",
+    help=f"""
+        If file contains row with types as row 1 (second row in file).
+        Available types: {', '.join(TYPES_MAP.keys())}.
+    """,
 )
-@click.option("--output-file", default=None, help="Name of file to write SQL insert to")
+@click.option("--output-file", default=None, help="Name of file to write SQL insert to.")
 def cli(
     path_to_file: str,
     output_table: str,
@@ -33,7 +36,7 @@ def cli(
     has_types_row: Optional[bool],
     output_file: Optional[str],
 ):
-    """Converts given table file to SQL insert statements."""
+    """Converts given table file to SQL insert statements and prints it."""
 
     insert_statement = convert_table_file_to_insert_statement(
         path_to_file=path_to_file,
