@@ -6,13 +6,14 @@ classifiers = [
   "Programming Language :: Python :: 3.7",
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
 ]
 description = ""
 homepage = "https://github.com/piotrgredowski/table2sql"
 license = "MIT"
 name = "table2sql"
 readme = "README.md"
-version = "1.0.1"
+version = "1.0.4"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/piotrgredowski/table2sql/issues"
