@@ -28,8 +28,8 @@ jobs:
       - name: Load cached Poetry installation
         uses: actions/cache@v2
         with:
-          path: ~/.local  # the path depends on the OS
-          key: poetry-1  # increment to reset cache
+          path: ~/.local # the path depends on the OS
+          key: poetry-1 # increment to reset cache
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
@@ -43,7 +43,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: .venv
-          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+          key: venv-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
 
       - name: Install dependencies
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
@@ -81,7 +81,7 @@ jobs:
       - name: Create Release Draft
         uses: softprops/action-gh-release@v1
         with:
-          body_path: ".github/RELEASE-TEMPLATE.md"
+          body_path: '.github/RELEASE-TEMPLATE.md'
           draft: true
           files: |
             dist/${{env.PACKAGE_NAME}}-${{env.PROJECT_VERSION}}-py3-none-any.whl

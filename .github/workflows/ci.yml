@@ -31,7 +31,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.local # the path depends on the OS
-          key: poetry-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+          key: poetry-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
@@ -45,7 +45,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: .venv
-          key: virtualenv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}-1
+          key: virtualenv-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}-1
 
       - name: Install dependencies
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
